@@ -43,6 +43,7 @@ interface TaskState {
 	dimensionTitle: string;
 	sourceName: string;
 	status: "pending" | "running" | "completed" | "failed";
+	activePid?: number | null;
 	attempts: number;
 	lastError: string | null;
 	lastAttemptAt: string | null;
@@ -55,6 +56,7 @@ interface SynthesisState {
 	dimensionName: string;
 	dimensionTitle: string;
 	status: "pending" | "running" | "completed" | "failed";
+	activePid?: number | null;
 	attempts: number;
 	lastError: string | null;
 	lastAttemptAt: string | null;
@@ -67,6 +69,7 @@ interface RunState {
 	createdAt: string;
 	updatedAt: string;
 	batchSize: number;
+	runnerPid?: number | null;
 	tasks: TaskState[];
 	synthesisTasks: SynthesisState[];
 	isComplete: boolean;
@@ -390,6 +393,23 @@ function saveState(ROOT: string, state: RunState): void {
 	writeFileSync(stateFile, JSON.stringify(state, null, 2), "utf-8");
 }
 
+function isProcessAlive(pid: number | null | undefined): boolean {
+	if (!pid || pid <= 0) return false;
+	try {
+		process.kill(pid, 0);
+		return true;
+	} catch {
+		return false;
+	}
+}
+
+function clearActiveRunState(task: TaskState | SynthesisState): void {
+	task.activePid = null;
+	if (task.status !== "completed") {
+		task.completedAt = null;
+	}
+}
+
 function findCompletedSources(
 	ROOT: string,
 	allSources: Source[],
@@ -438,8 +458,9 @@ function createInitialState(
 				dimensionName: d.name,
 				dimensionTitle: d.title,
 				sourceName: s.name,
-				status: isDone ? "completed" : "pending",
-				attempts: isDone ? 1 : 0,
+			status: isDone ? "completed" : "pending",
+			activePid: null,
+			attempts: isDone ? 1 : 0,
 				lastError: null,
 				lastAttemptAt: isDone ? new Date().toISOString() : null,
 				nextRetryAt: null,
@@ -475,6 +496,7 @@ function createInitialState(
 					dimensionName: d.name,
 					dimensionTitle: d.title,
 					status: "completed",
+					activePid: null,
 					attempts: 1,
 					lastError: null,
 					lastAttemptAt: new Date().toISOString(),
@@ -493,6 +515,7 @@ function createInitialState(
 		createdAt: new Date().toISOString(),
 		updatedAt: new Date().toISOString(),
 		batchSize,
+		runnerPid: process.pid,
 		tasks: taskStates,
 		synthesisTasks,
 		isComplete: false,
@@ -597,6 +620,9 @@ function cmdStatus(ROOT: string): void {
 	console.log(
 		`Status: ${state.isComplete ? "✓ Complete" : "▶ In progress"}  |  Batch: ${state.batchSize}`,
 	);
+	if (state.runnerPid && isProcessAlive(state.runnerPid)) {
+		console.log(`Runner PID: ${state.runnerPid}`);
+	}
 
 	if (analysisCompleted < analysisTotal || synthCompleted < synthTotal) {
 		console.log("");
@@ -609,7 +635,8 @@ function cmdStatus(ROOT: string): void {
 				console.log(`  ✗ ${label} (attempt ${t.attempts}${retryStr})`);
 				if (t.lastError) console.log(`    Error: ${t.lastError}`);
 			} else {
-				console.log(`  ○ ${label}`);
+				const pidLabel = t.activePid ? ` [pid ${t.activePid}]` : "";
+				console.log(`  ○ ${label}${pidLabel}`);
 			}
 		}
 		for (const s of state.synthesisTasks) {
@@ -620,7 +647,8 @@ function cmdStatus(ROOT: string): void {
 				console.log(`  ✗ ${label} (attempt ${s.attempts}${retryStr})`);
 				if (s.lastError) console.log(`    Error: ${s.lastError}`);
 			} else {
-				console.log(`  ○ ${label}`);
+				const pidLabel = s.activePid ? ` [pid ${s.activePid}]` : "";
+				console.log(`  ○ ${label}${pidLabel}`);
 			}
 		}
 		console.log("");
@@ -660,9 +688,32 @@ function validateCompletedTasks(
 			);
 			t.status = "pending";
 			t.attempts = 0;
+			clearActiveRunState(t);
 			t.completedAt = null;
 			t.lastAttemptAt = null;
 			t.lastError = "Per-source analysis file missing on resume";
+			fixed++;
+		}
+	}
+	for (const t of state.tasks) {
+		if (t.status !== "running") continue;
+		if (!isProcessAlive(t.activePid)) {
+			console.log(
+				`  ⚠ Analysis "${t.dimensionTitle} × ${t.sourceName}" was running without a live worker — resetting to pending`,
+			);
+			t.status = "pending";
+			clearActiveRunState(t);
+			fixed++;
+		}
+	}
+	for (const s of state.synthesisTasks) {
+		if (s.status !== "running") continue;
+		if (!isProcessAlive(s.activePid)) {
+			console.log(
+				`  ⚠ Synthesis "${s.dimensionTitle}" was running without a live worker — resetting to pending`,
+			);
+			s.status = "pending";
+			clearActiveRunState(s);
 			fixed++;
 		}
 	}
@@ -961,6 +1012,13 @@ export async function cmdStudyRunLoop(
 
 	let state = loadState(studyDir);
 	if (state) {
+		if (state.runnerPid && state.runnerPid !== process.pid && isProcessAlive(state.runnerPid)) {
+			console.error(
+				`\nError: study loop is already running under PID ${state.runnerPid}. Stop it or wait for it to finish before starting another coordinator.`,
+			);
+			process.exit(1);
+		}
+		state.runnerPid = process.pid;
 		console.log(`\n▶ Resuming existing run from ${state.createdAt}`);
 		const fixed = validateCompletedTasks(
 			studyDir,
@@ -990,6 +1048,7 @@ export async function cmdStudyRunLoop(
 			`\n▶ Starting run: ${total} analyses + synthesis per dimension, batch size ${opts.batchSize}`,
 		);
 	}
+	saveState(studyDir, state);
 
 	const runWithConcurrency = async <T>(
 		tasks: (() => Promise<T>)[],
@@ -1011,9 +1070,15 @@ export async function cmdStudyRunLoop(
 
 	process.on("SIGINT", () => {
 		console.log("\n\n⚠ Interrupted. Saving state before exit...");
+		state!.runnerPid = null;
 		saveState(studyDir, state!);
 		console.log(`State saved. Run to resume.`);
 		process.exit(130);
+	});
+	process.on("SIGTERM", () => {
+		state!.runnerPid = null;
+		saveState(studyDir, state!);
+		process.exit(143);
 	});
 
 	while (!state!.isComplete) {
@@ -1117,6 +1182,7 @@ export async function cmdStudyRunLoop(
 
 		if (completedCount === totalTasks) {
 			state!.isComplete = true;
+			state!.runnerPid = null;
 			saveState(studyDir, state!);
 			cmdStatus(studyDir);
 			console.log("\n✓ All tasks completed!");
@@ -1152,6 +1218,7 @@ export async function cmdStudyRunLoop(
 		runnable.push(...runnableAnalysis.slice(0, analysisSlots));
 		for (const t of runnable) {
 			t.status = "running";
+			t.activePid = null;
 			t.lastAttemptAt = new Date().toISOString();
 			t.attempts++;
 		}
@@ -1191,7 +1258,12 @@ export async function cmdStudyRunLoop(
 						timeoutMs: opts.timeoutMs,
 						primaryModel: CONFIG.primaryModel,
 						backupModel: CONFIG.backupModel,
+						onSpawn: (pid) => {
+							t.activePid = pid;
+							saveState(studyDir, state!);
+						},
 					});
+					clearActiveRunState(t);
 					if (code === 0) {
 						const analysisPath = join(
 							studyDir,
@@ -1249,7 +1321,12 @@ export async function cmdStudyRunLoop(
 						timeoutMs: opts.timeoutMs,
 						primaryModel: CONFIG.primaryModel,
 						backupModel: CONFIG.backupModel,
+						onSpawn: (pid) => {
+							s.activePid = pid;
+							saveState(studyDir, state!);
+						},
 					});
+					clearActiveRunState(s);
 					if (code === 0) {
 						const reportPath = join(
 							studyDir,

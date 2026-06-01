@@ -1,7 +1,7 @@
 {
   "version": 1,
   "createdAt": "2026-05-31T13:58:46.137Z",
-  "updatedAt": "2026-06-01T12:02:04.045Z",
+  "updatedAt": "2026-06-01T13:29:38.899Z",
   "batchSize": 3,
   "tasks": [
     {
@@ -273,72 +273,74 @@
       "dimensionName": "pr-diff-ingestion-and-normalisation",
       "dimensionTitle": "Dimension 02: PR Diff Ingestion & Normalisation",
       "sourceName": "gerrit",
-      "status": "running",
-      "attempts": 3,
+      "status": "completed",
+      "attempts": 7,
       "lastError": null,
-      "lastAttemptAt": "2026-06-01T12:02:04.045Z",
+      "lastAttemptAt": "2026-06-01T13:24:57.411Z",
       "nextRetryAt": null,
-      "completedAt": null
+      "completedAt": "2026-06-01T13:29:38.899Z",
+      "activePid": null
     },
     {
       "dimensionNumber": "02",
       "dimensionName": "pr-diff-ingestion-and-normalisation",
       "dimensionTitle": "Dimension 02: PR Diff Ingestion & Normalisation",
       "sourceName": "huggingface-ai-reviewer",
-      "status": "pending",
-      "attempts": 0,
+      "status": "completed",
+      "attempts": 1,
       "lastError": null,
-      "lastAttemptAt": null,
+      "lastAttemptAt": "2026-06-01T12:36:09.765Z",
       "nextRetryAt": null,
-      "completedAt": null
+      "completedAt": "2026-06-01T12:37:49.076Z"
     },
     {
       "dimensionNumber": "02",
       "dimensionName": "pr-diff-ingestion-and-normalisation",
       "dimensionTitle": "Dimension 02: PR Diff Ingestion & Normalisation",
       "sourceName": "kasidit-ai-code-reviewer",
-      "status": "pending",
-      "attempts": 0,
+      "status": "completed",
+      "attempts": 1,
       "lastError": null,
-      "lastAttemptAt": null,
+      "lastAttemptAt": "2026-06-01T12:36:09.765Z",
       "nextRetryAt": null,
-      "completedAt": null
+      "completedAt": "2026-06-01T12:37:36.177Z"
     },
     {
       "dimensionNumber": "02",
       "dimensionName": "pr-diff-ingestion-and-normalisation",
       "dimensionTitle": "Dimension 02: PR Diff Ingestion & Normalisation",
       "sourceName": "kasidit-ai-code-reviewer-readme",
-      "status": "pending",
-      "attempts": 0,
+      "status": "completed",
+      "attempts": 1,
       "lastError": null,
-      "lastAttemptAt": null,
+      "lastAttemptAt": "2026-06-01T13:03:20.117Z",
       "nextRetryAt": null,
-      "completedAt": null
+      "completedAt": "2026-06-01T13:05:15.321Z"
     },
     {
       "dimensionNumber": "02",
       "dimensionName": "pr-diff-ingestion-and-normalisation",
       "dimensionTitle": "Dimension 02: PR Diff Ingestion & Normalisation",
       "sourceName": "patchwork",
-      "status": "pending",
-      "attempts": 0,
+      "status": "completed",
+      "attempts": 2,
       "lastError": null,
-      "lastAttemptAt": null,
+      "lastAttemptAt": "2026-06-01T13:15:21.116Z",
       "nextRetryAt": null,
-      "completedAt": null
+      "completedAt": "2026-06-01T13:16:35.831Z"
     },
     {
       "dimensionNumber": "02",
       "dimensionName": "pr-diff-ingestion-and-normalisation",
       "dimensionTitle": "Dimension 02: PR Diff Ingestion & Normalisation",
       "sourceName": "pr-agent",
-      "status": "pending",
-      "attempts": 0,
+      "status": "completed",
+      "attempts": 2,
       "lastError": null,
-      "lastAttemptAt": null,
+      "lastAttemptAt": "2026-06-01T13:24:57.411Z",
       "nextRetryAt": null,
-      "completedAt": null
+      "completedAt": "2026-06-01T13:29:09.358Z",
+      "activePid": null
     },
     {
       "dimensionNumber": "02",
@@ -2411,12 +2413,14 @@
       "dimensionName": "review-entrypoints-and-integrations",
       "dimensionTitle": "Dimension 01: Review Entrypoints & Platform Integrations",
       "status": "running",
-      "attempts": 1,
+      "attempts": 2,
       "lastError": null,
-      "lastAttemptAt": "2026-06-01T10:51:03.785Z",
+      "lastAttemptAt": "2026-06-01T13:24:57.411Z",
       "nextRetryAt": null,
-      "completedAt": null
+      "completedAt": null,
+      "activePid": 2060365
     }
   ],
-  "isComplete": false
+  "isComplete": false,
+  "runnerPid": 2060312
 }

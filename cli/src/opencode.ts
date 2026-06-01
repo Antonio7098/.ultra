@@ -1,6 +1,25 @@
 import { spawn } from "child_process";
 import { OPENCODE_BIN, OPENCODE_CONFIG_PATH } from "./paths.js";
 
+function terminateChild(child: ReturnType<typeof spawn>): void {
+	if (child.killed) return;
+	try {
+		child.kill("SIGTERM");
+	} catch {
+		return;
+	}
+
+	setTimeout(() => {
+		if (!child.killed) {
+			try {
+				child.kill("SIGKILL");
+			} catch {
+				/* noop */
+			}
+		}
+	}, 5_000).unref();
+}
+
 export interface RunResult {
 	code: number;
 	rateLimited: boolean;
@@ -17,6 +36,7 @@ export interface RunOpenCodeOptions {
 	prompt: string;
 	workingDir: string;
 	format?: string;
+	onSpawn?: (pid: number) => void;
 }
 
 export async function runOpenCode(
@@ -46,13 +66,30 @@ export async function runOpenCode(
 				...opts.extraEnv,
 			},
 		});
+		if (typeof child.pid === "number") {
+			opts.onSpawn?.(child.pid);
+		}
+
+		const shutdownSignals: NodeJS.Signals[] = ["SIGINT", "SIGTERM", "SIGHUP"];
+		const handleShutdown = () => {
+			terminateChild(child);
+		};
+		for (const signal of shutdownSignals) {
+			process.once(signal, handleShutdown);
+		}
+
+		const cleanupHandlers = () => {
+			for (const signal of shutdownSignals) {
+				process.removeListener(signal, handleShutdown);
+			}
+		};
 
 		const timer = opts.timeoutMs
 			? setTimeout(() => {
 					console.error(
 						`\n✗ Timed out after ${opts.timeoutMs / 1000}s, killing process...`,
 					);
-					child.kill();
+					terminateChild(child);
 				}, opts.timeoutMs)
 			: null;
 
@@ -66,6 +103,7 @@ export async function runOpenCode(
 		});
 
 		child.on("close", (code) => {
+			cleanupHandlers();
 			if (timer) clearTimeout(timer);
 			const stderrLower = stderrBuf.toLowerCase();
 			if (
@@ -83,6 +121,7 @@ export async function runOpenCode(
 			resolvePromise({ code: code ?? 1, rateLimited, rateLimitModel });
 		});
 		child.on("error", (err) => {
+			cleanupHandlers();
 			if (timer) clearTimeout(timer);
 			reject(err);
 		});
