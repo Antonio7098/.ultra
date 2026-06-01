@@ -1,0 +1,78 @@
+{
+  "files": {
+    "pkg/cli/format.go": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 37
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T17:55:25.850Z"
+    },
+    "cmd/todo/main.go": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 25
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T20:12:18.778Z"
+    },
+    "pkg/cli/format_test.go": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 22
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T17:55:11.916Z"
+    },
+    "internal/store/errors.go": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 6
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T20:11:57.342Z"
+    },
+    "internal/store/jsonstore.go": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 150
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T20:11:57.370Z"
+    },
+    "internal/store/jsonstore_test.go": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 147
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T20:12:18.761Z"
+    },
+    "internal/config/paths_test.go": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 76
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T20:20:17.209Z"
+    }
+  },
+  "turnCycles": 0,
+  "maxCycles": 3,
+  "lastUpdated": "2026-05-25T20:20:17.209Z",
+  "sessionId": "lens-mplfheiz-890c18b7"
+}

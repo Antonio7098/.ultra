@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "project": "go-todo",
+  "sprint": "01-project-structure",
+  "updatedAt": "2026-05-26T12:13:01.351Z",
+  "stages": {
+    "requirements": {
+      "status": "ready",
+      "path": "requirements.md"
+    },
+    "sprint-index": {
+      "status": "ready",
+      "path": "sprint-index.md",
+      "lastRunAt": "2026-05-26T11:58:23.002Z"
+    },
+    "technical-handbook": {
+      "status": "ready",
+      "path": "technical-handbook.md",
+      "lastRunAt": "2026-05-26T11:59:17.991Z"
+    },
+    "area-reasoning": {
+      "status": "ready",
+      "path": "reasoning/",
+      "lastRunAt": "2026-05-26T11:57:21.364Z"
+    },
+    "reasoning": {
+      "status": "ready",
+      "path": "reasoning.md",
+      "lastRunAt": "2026-05-26T12:01:27.374Z"
+    },
+    "plan": {
+      "status": "ready",
+      "path": "plan.md",
+      "lastRunAt": "2026-05-26T12:07:05.932Z"
+    },
+    "implementation": {
+      "status": "complete",
+      "path": ".run-state.json",
+      "lastRunAt": "2026-05-26T12:13:01.351Z"
+    },
+    "review": {
+      "status": "not_started",
+      "path": "review.md"
+    }
+  }
+}

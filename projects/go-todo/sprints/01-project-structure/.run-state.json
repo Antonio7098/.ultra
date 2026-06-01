@@ -1,0 +1,27 @@
+{
+  "status": "complete",
+  "completedAt": "2026-05-26T13:10:00Z",
+  "files": [
+    "go.mod",
+    "go.sum",
+    "cmd/todo/main.go",
+    "internal/model/task.go",
+    "internal/model/task_test.go",
+    "internal/store/errors.go",
+    "internal/store/jsonstore.go",
+    "internal/store/jsonstore_test.go",
+    "internal/config/paths.go"
+  ],
+  "testsRun": [
+    "go build ./... — exit 0",
+    "go vet ./... — clean",
+    "go test -v ./internal/model/ — 5 tests pass",
+    "go test -v ./internal/store/ — 11 tests pass (CRUD + atomic + 5 failure paths + first-run empty list)",
+    "go test ./... — all pass",
+    "go test -count=100 ./... — all pass",
+    "wc -l cmd/todo/main.go — 24 lines (< 50)",
+    "go run cmd/todo/main.go --help — shows help text",
+    "go run cmd/todo/main.go --version — shows 0.1.0"
+  ],
+  "blockers": []
+}

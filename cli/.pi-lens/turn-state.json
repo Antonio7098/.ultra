@@ -1,0 +1,118 @@
+{
+  "files": {
+    "src/state.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 210
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T17:12:56.538Z"
+    },
+    "src/sprint-flow.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 244
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T17:12:56.414Z"
+    },
+    "src/validators.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 611
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-26T10:19:36.493Z"
+    },
+    "src/index.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 506
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T17:12:58.355Z"
+    },
+    "src/meta.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 48
+        }
+      ],
+      "importsChanged": false,
+      "lastEdit": "2026-05-25T17:13:00.302Z"
+    },
+    "__tests__/cli.test.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 1339
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-26T11:51:00.408Z"
+    },
+    "src/paths.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 122
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T17:12:54.457Z"
+    },
+    "src/config.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 45
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T17:12:48.713Z"
+    },
+    "src/sprint.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 313
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T17:12:50.564Z"
+    },
+    "src/opencode.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 106
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T17:12:50.704Z"
+    },
+    "src/studies.ts": {
+      "modifiedRanges": [
+        {
+          "start": 1,
+          "end": 1304
+        }
+      ],
+      "importsChanged": true,
+      "lastEdit": "2026-05-25T17:12:52.597Z"
+    }
+  },
+  "turnCycles": 0,
+  "maxCycles": 3,
+  "lastUpdated": "2026-05-26T11:51:00.408Z",
+  "sessionId": "lens-mpmkowp6-5d47e12a"
+}

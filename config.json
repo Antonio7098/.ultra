@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "structure": "ultra",
+  "defaultModel": "minimax-coding-plan/minimax/minimax-m2.7",
+  "primaryModel": "minimax-coding-plan/minimax/minimax-m2.7", 
+  "layers": {
+    "system": "governance layer (contracts, reasoning, protocols)",
+    "studies": "distillation input layer",
+    "projects": "execution layer (targets renamed)"
+  }
+}

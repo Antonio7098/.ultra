@@ -1,0 +1,202 @@
+name: ai-code-review-agent-study
+description: >-
+  Comparative study of open-source AI code review agent systems — examining entrypoints, diff ingestion, context
+  selection, orchestration, prompts, static analysis integration, finding models, comment placement, false
+  positive control, security review, architecture review, custom rules, UX, deployment, and observability across
+  elite implementations. Designed to inform the design of Ultraplan's own review agent.
+repos:
+  count: 10
+  items:
+    - name: pr-agent
+      url: https://github.com/The-PR-Agent/pr-agent
+      description: >-
+        Best-in-class open-source AI PR reviewer — supports PR review, suggestions, summary, and multi-platform
+        workflows. The primary reference baseline for AI-assisted code review.
+    - name: reviewdog
+      url: https://github.com/reviewdog/reviewdog
+      description: >-
+        Deterministic review automation infrastructure — parses linter output and posts comments only on changed
+        diff lines. Essential for understanding non-AI review automation patterns.
+    - name: danger-js
+      url: https://github.com/danger/danger
+      description: >-
+        Codifies repeated code review chores in CI — missing changelog updates, PR size checks, test reminders,
+        and team conventions. Excellent for understanding rule-based review automation.
+    - name: gerrit
+      url: https://github.com/gerrit-review/gerrit
+      description: >-
+        Serious review-system architecture — patchsets, approvals, inline comments, verification, and submit
+        flow. The reference design for mature review workflows beyond GitHub's model.
+    - name: review-board
+      url: https://github.com/reviewboard/reviewboard
+      description: >-
+        Mature open-source web-based code/document review system with ReviewBot for automated static-analysis
+        review. Useful for understanding extensible review platforms.
+    - name: patchwork
+      url: https://github.com/getpatchwork/patchwork
+      description: >-
+        Email/patch-based review system for mailing-list workflows. Valuable for understanding patch tracking,
+        state machines, and maintainer review patterns.
+    - name: huggingface-ai-reviewer
+      url: https://github.com/huggingface/ai-reviewer
+      description: >-
+        OpenAI-compatible LLM GitHub PR reviewer with inline comments and a human-validation mode before
+        posting. Relevant for its validation-before-posting pattern.
+    - name: canonical-maas-code-reviewer
+      url: https://github.com/canonical/maas-code-reviewer
+      description: >-
+        Gemini-based diff reviewer maintained by Canonical's MAAS team. Useful for team-opinionated review
+        rather than generic review patterns.
+    - name: kasidit-ai-code-reviewer
+      url: https://github.com/kasidit-wansudon/ai-code-reviewer
+      description: >-
+        Go GitHub Action that parses unified diff into per-file/per-hunk context, sends to LLM, and posts
+        inline comments. Minimal but instructive implementation.
+    - name: qwen-code-review
+      url: https://github.com/QwenLM/qwen-code
+      description: >-
+        Design reference for local/PR review commands, inline comments, and rule injection from repo files.
+        Reads rules from base branch to avoid malicious PR rule injection.
+non_github_sources:
+  count: 11
+  items:
+    - name: alex-ellis-ai-code-review-bot
+      url: https://blog.alexellis.io/ai-code-review-bot/
+      description: Practical article on building an AI code-review bot, with implementation details.
+    - name: continue-pr-review-bot
+      url: https://docs.continue.dev/guides/github-pr-review-bot
+      description: Guide for building an automated PR review system using custom team rules and standards.
+    - name: reviewdog-github-actions
+      url: https://medium.com/@haya14busa/automated-code-review-on-github-actions-with-reviewdog-for-any-languages-tools-20285e04448e
+      description: Explains reviewdog as a language-agnostic automated review layer using linter-output parsing.
+    - name: github-agent-pr-review-policy
+      url: https://github.blog/ai-and-ml/generative-ai/agent-pull-requests-are-everywhere-heres-how-to-review-them/
+      description: GitHub's policy guidance for reviewing AI-generated pull requests — useful for building governance rules.
+    - name: pr-agent-youtube
+      url: https://www.youtube.com/watch?v=Ryaf19z8O-0
+      description: Walkthrough of PR-Agent-style AI review and PR chat.
+    - name: reviewdog-swiftlint-youtube
+      url: https://www.youtube.com/watch?v=Hexx8oWJCGg
+      description: Practical reviewdog setup with SwiftLint example.
+    - name: dangerjs-youtube
+      url: https://www.youtube.com/watch?v=J2ITov8r0Rs
+      description: Understanding DangerJS for non-AI rule automation.
+    - name: gerrit-intro-youtube
+      url: https://www.youtube.com/watch?v=Zi6GZ7yYjSo
+      description: Background on Gerrit terminology and workflow.
+    - name: gerrit-ai-youtube
+      url: https://www.youtube.com/watch?v=vgp4tHoBlhY
+      description: AI-assisted review inside a mature review system (Gerrit).
+    - name: kasidit-ai-code-reviewer-readme
+      url: https://raw.githubusercontent.com/kasidit-wansudon/ai-code-reviewer/main/README.md
+      description: README for the Go-based GitHub Action AI code reviewer.
+    - name: coderabbitai-openai-pr-reviewer
+      url: https://raw.githubusercontent.com/coderabbitai/openai-pr-reviewer/main/README.md
+      description: Older simple CodeRabbit-linked open-source PR reviewer action.
+dimensions:
+  count: 15
+  items:
+    - number: '01'
+      name: review-entrypoints-and-integrations
+      title: Review Entrypoints & Platform Integrations
+      description: How agents connect to workflows — GitHub Apps, Actions, CLI, webhooks, and local execution.
+      purpose: >-
+        Understand how open-source code review agents connect to developer workflows, especially GitHub pull
+        requests, GitLab merge requests, CI pipelines, webhooks, and local CLI execution.
+    - number: '02'
+      name: pr-diff-ingestion-and-normalisation
+      title: PR Diff Ingestion & Normalisation
+      description: Fetching, parsing, normalising, and representing pull request diffs.
+      purpose: >-
+        Understand how code review agents fetch, parse, normalise, and represent pull request diffs before
+        passing them into review logic.
+    - number: '03'
+      name: context-selection-and-repository-understanding
+      title: Context Selection & Repository Understanding
+      description: Gathering repository context beyond the changed diff.
+      purpose: >-
+        Understand how review agents gather useful repository context beyond the changed diff, including
+        related files, documentation, dependency graphs, tests, ownership rules, and architectural conventions.
+    - number: '04'
+      name: review-orchestration-and-agent-flow
+      title: Review Orchestration & Agent Flow
+      description: Multi-step workflows, specialised agents, tool calls, and verification passes.
+      purpose: >-
+        Understand how code review agents structure the review process across one-shot prompts, multi-step
+        workflows, specialised agents, tool calls, and verification passes.
+    - number: '05'
+      name: prompt-and-policy-system
+      title: Prompt & Policy System
+      description: Defining, organising, customising, and applying prompts and review policies.
+      purpose: >-
+        Understand how code review agents define, organise, customise, and apply prompts, review instructions,
+        coding standards, and project-specific policies.
+    - number: '06'
+      name: static-analysis-and-tool-integration
+      title: Static Analysis & Tool Integration
+      description: Integrating linters, type checkers, test runners, security scanners, and formatters.
+      purpose: >-
+        Understand how AI code review agents integrate deterministic tools such as linters, type checkers,
+        test runners, security scanners, formatters, and static analysers.
+    - number: '07'
+      name: finding-generation-and-severity-model
+      title: Finding Generation & Severity Model
+      description: Representing, classifying, scoring, and prioritising findings.
+      purpose: >-
+        Understand how code review agents represent, classify, score, and prioritise findings.
+    - number: '08'
+      name: inline-comment-placement
+      title: Inline Comment Placement
+      description: Positioning inline comments inside pull request diffs.
+      purpose: >-
+        Understand how code review systems decide where to place inline comments and how they ensure
+        comments are valid, precise, and useful inside pull request diffs.
+    - number: '09'
+      name: false-positive-control-and-verification
+      title: False Positive Control & Verification
+      description: Reducing hallucinations, speculative comments, duplicates, and low-value suggestions.
+      purpose: >-
+        Understand how code review agents reduce hallucinations, speculative comments, duplicate findings,
+        and low-value suggestions.
+    - number: '10'
+      name: security-and-risk-review
+      title: Security & Risk Review
+      description: Detecting security, privacy, dependency, secret-management, and operational-risk issues.
+      purpose: >-
+        Understand how code review agents detect security, privacy, dependency, secret-management, and
+        operational-risk issues.
+    - number: '11'
+      name: architecture-and-maintainability-review
+      title: Architecture & Maintainability Review
+      description: Identifying maintainability problems, architectural drift, and boundary violations.
+      purpose: >-
+        Understand how review agents identify maintainability problems, architectural drift, poor boundaries,
+        excessive complexity, duplication, and code that does not fit existing project patterns.
+    - number: '12'
+      name: custom-rules-and-governance
+      title: Custom Rules & Governance
+      description: Defining custom rules, governance policies, and coding standards.
+      purpose: >-
+        Understand how code review agents allow teams to define custom rules, governance policies, coding
+        standards, compliance requirements, and project-specific review contracts.
+    - number: '13'
+      name: user-experience-and-review-output
+      title: User Experience & Review Output
+      description: PR summaries, inline comments, check runs, and conversational interaction.
+      purpose: >-
+        Understand how code review agents communicate findings to developers through PR summaries, inline
+        comments, check runs, markdown reports, status checks, and conversational commands.
+    - number: '14'
+      name: ci-cd-runtime-and-deployment-model
+      title: CI/CD Runtime & Deployment Model
+      description: Packaging, deploying, configuring, and executing review agents.
+      purpose: >-
+        Understand how code review agents are packaged, deployed, configured, and executed in real
+        developer environments.
+    - number: '15'
+      name: observability-cost-and-evaluation
+      title: Observability, Cost & Evaluation
+      description: Measuring quality, tracking failures, monitoring cost, and evaluating accuracy.
+      purpose: >-
+        Understand how code review agents measure quality, track failures, monitor cost, evaluate review
+        accuracy, and improve over time.

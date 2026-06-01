@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "project": "test-project",
+  "sprint": "01-test",
+  "updatedAt": "2026-05-25T16:54:08.348Z",
+  "stages": {
+    "sprint-index": {
+      "status": "missing",
+      "path": "sprint-index.md"
+    },
+    "technical-handbook": {
+      "status": "missing",
+      "path": "technical-handbook.md"
+    },
+    "area-reasoning": {
+      "status": "missing",
+      "path": "reasoning/"
+    },
+    "reasoning": {
+      "status": "missing",
+      "path": "reasoning.md"
+    },
+    "plan": {
+      "status": "missing",
+      "path": "plan.md"
+    },
+    "implementation": {
+      "status": "missing",
+      "path": ".run-state.json"
+    },
+    "review": {
+      "status": "missing",
+      "path": "review.md"
+    }
+  }
+}

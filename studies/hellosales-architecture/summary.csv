@@ -1,0 +1,10 @@
+source,"Dimension: Project Structure & Boundaries","Dimension: Dependency Injection & Composition","Dimension: Configuration & Environment Management","Dimension: HTTP/API Surface Design","Dimension: Background Jobs & Async Workflows","Dimension: Concurrency Model","Dimension: Data Ingestion & Processing Pipelines","Dimension: State Management & Persistence","Dimension: Observability & Operational Visibility","Dimension: Error Taxonomy & Failure Handling","Dimension: AI Runtime & Model Abstraction","Dimension: Workflow / Agent Orchestration","Dimension: Extensibility & Plugin Architecture","Dimension: Testing Strategy & Reliability Engineering","Dimension: Performance & Resource Discipline","Dimension: Security & Multi-Tenant Isolation","Dimension: Developer Experience & Operational Ergonomics","Dimension: Governance & Evolution Strategy",total
+kubernetes,9,8,8,8,7,8,8,8,8,8,1,5,8,8,8,8,7,9,134
+temporal,8,8,8,7,9,8,8,8,8,8,1,9,6,8,6,5,8,7,130
+grafana,8,8,8,,6,8,7,7,8,7,4,5,8,8,6,8,8,8,122
+milvus,8,7,7,6,6,,8,8,8,8,4,3,5,8,7,7,7,7,114
+nats-server,6,7,8,4,6,8,8,7,6,7,,2,,8,9,8,7,7,108
+openfga,8,8,7,8,5,8,7,8,7,7,,2,,8,8,7,8,,106
+victoriametrics,8,7,7,8,5,,8,7,7,6,1,2,3,8,9,5,7,6,104
+pocketbase,7,7,7,7,3,7,5,7,,6,1,2,6,7,6,5,7,6,96
+cli,7,6,7,,,6,5,5,4,6,2,2,3,,,5,8,7,73

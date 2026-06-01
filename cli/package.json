@@ -1,0 +1,18 @@
+{
+  "name": "@ultra/cli",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Ultra CLI — sprint flow orchestrator and study runner for .ultra/",
+  "bin": {
+    "ultra": "./src/index.ts"
+  },
+  "scripts": {
+    "ultra": "bun run src/index.ts",
+    "test": "bun test",
+    "test:watch": "bun test --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/bun": "^1.0.0"
+  }
+}

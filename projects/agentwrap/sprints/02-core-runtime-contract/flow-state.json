@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "project": "agentwrap",
+  "sprint": "02-core-runtime-contract",
+  "updatedAt": "2026-05-25T17:11:48.764Z",
+  "stages": {
+    "sprint-index": {
+      "status": "missing",
+      "path": "sprint-index.md"
+    },
+    "technical-handbook": {
+      "status": "missing",
+      "path": "technical-handbook.md"
+    },
+    "area-reasoning": {
+      "status": "missing",
+      "path": "reasoning/"
+    },
+    "reasoning": {
+      "status": "ready",
+      "path": "reasoning.md"
+    },
+    "plan": {
+      "status": "ready",
+      "path": "plan.md"
+    },
+    "implementation": {
+      "status": "missing",
+      "path": ".run-state.json"
+    },
+    "review": {
+      "status": "missing",
+      "path": "review.md"
+    }
+  }
+}
