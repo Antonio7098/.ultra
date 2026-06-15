@@ -315,7 +315,7 @@ Examples:
 ```bash
 ultra sprint plan agentwrap 02-core-runtime-contract
 ultra sprint plan agentwrap 02-core-runtime-contract --dry-run
-ultra sprint plan agentwrap 02-core-runtime-contract --model openai/gpt-5.5 --context-window 1000000
+ultra sprint plan agentwrap 02-core-runtime-contract --from requirements --to plan --model openai/gpt-5.5 --variant high --context-window 1000000
 ```
 
 This uses `prompts/plan-sprint.md` and writes:

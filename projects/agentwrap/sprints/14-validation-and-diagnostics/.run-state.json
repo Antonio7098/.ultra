@@ -1,0 +1,24 @@
+{
+  "status": "blocked",
+  "completedAt": "2026-06-13T11:40:46+01:00",
+  "files": [
+    "projects/agentwrap/project-index.md",
+    "projects/agentwrap/sprints/14-validation-and-diagnostics/plan.md",
+    "projects/agentwrap/sprints/14-validation-and-diagnostics/.run-state.json"
+  ],
+  "testsRun": [
+    "sed -n '1,240p' prompts/execute-sprint.md: passed",
+    "sed -n '1,260p' projects/agentwrap/sprints/14-validation-and-diagnostics/plan.md: passed",
+    "sed -n '1,260p' projects/agentwrap/sprints/14-validation-and-diagnostics/reasoning.md: passed",
+    "sed -n '1,240p' projects/agentwrap/roadmap.md: passed",
+    "find projects/agentwrap -maxdepth 2 -type f -name '*index*.md' -o -name 'project*.md': confirmed project-index.md was absent before execution",
+    "test -f projects/agentwrap/sprints/14-validation-and-diagnostics/reasoning.md && test -f projects/agentwrap/sprints/14-validation-and-diagnostics/plan.md: passed",
+    "test -f projects/agentwrap/sprints/14-validation-and-diagnostics/requirements.md && test -f projects/agentwrap/sprints/14-validation-and-diagnostics/sprint-index.md && test -f projects/agentwrap/sprints/14-validation-and-diagnostics/technical-handbook.md: failed as expected; missing sprint inputs block implementation"
+  ],
+  "blockers": [
+    "projects/agentwrap/sprints/14-validation-and-diagnostics/requirements.md is missing, so concrete Sprint 14 scope and non-goals are unavailable.",
+    "projects/agentwrap/sprints/14-validation-and-diagnostics/sprint-index.md is missing, so selected context, evidence packs, and review protocols are unavailable.",
+    "projects/agentwrap/sprints/14-validation-and-diagnostics/technical-handbook.md is missing, so sprint-specific evidence and implementation guidance are unavailable.",
+    "projects/agentwrap/sprints/14-validation-and-diagnostics/reasoning/ area reasoning is absent and cannot be selected without sprint-index.md."
+  ]
+}

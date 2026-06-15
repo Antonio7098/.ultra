@@ -1,7 +1,7 @@
 {
   "version": 1,
   "createdAt": "2026-05-31T13:58:46.137Z",
-  "updatedAt": "2026-06-01T13:29:38.899Z",
+  "updatedAt": "2026-06-01T13:52:59.651Z",
   "batchSize": 3,
   "tasks": [
     {
@@ -347,36 +347,39 @@
       "dimensionName": "pr-diff-ingestion-and-normalisation",
       "dimensionTitle": "Dimension 02: PR Diff Ingestion & Normalisation",
       "sourceName": "qwen-code-review",
-      "status": "pending",
-      "attempts": 0,
+      "status": "running",
+      "attempts": 1,
       "lastError": null,
-      "lastAttemptAt": null,
+      "lastAttemptAt": "2026-06-01T13:31:30.679Z",
       "nextRetryAt": null,
-      "completedAt": null
+      "completedAt": null,
+      "activePid": 2075248
     },
     {
       "dimensionNumber": "02",
       "dimensionName": "pr-diff-ingestion-and-normalisation",
       "dimensionTitle": "Dimension 02: PR Diff Ingestion & Normalisation",
       "sourceName": "qwen-code-review-docs",
-      "status": "pending",
-      "attempts": 0,
+      "status": "running",
+      "attempts": 1,
       "lastError": null,
-      "lastAttemptAt": null,
+      "lastAttemptAt": "2026-06-01T13:31:30.679Z",
       "nextRetryAt": null,
-      "completedAt": null
+      "completedAt": null,
+      "activePid": 2075249
     },
     {
       "dimensionNumber": "02",
       "dimensionName": "pr-diff-ingestion-and-normalisation",
       "dimensionTitle": "Dimension 02: PR Diff Ingestion & Normalisation",
       "sourceName": "review-board",
-      "status": "pending",
-      "attempts": 0,
+      "status": "running",
+      "attempts": 1,
       "lastError": null,
-      "lastAttemptAt": null,
+      "lastAttemptAt": "2026-06-01T13:31:30.679Z",
       "nextRetryAt": null,
-      "completedAt": null
+      "completedAt": null,
+      "activePid": 2075251
     },
     {
       "dimensionNumber": "02",
@@ -2412,15 +2415,15 @@
       "dimensionNumber": "01",
       "dimensionName": "review-entrypoints-and-integrations",
       "dimensionTitle": "Dimension 01: Review Entrypoints & Platform Integrations",
-      "status": "running",
+      "status": "completed",
       "attempts": 2,
       "lastError": null,
       "lastAttemptAt": "2026-06-01T13:24:57.411Z",
       "nextRetryAt": null,
-      "completedAt": null,
-      "activePid": 2060365
+      "completedAt": "2026-06-01T13:31:30.137Z",
+      "activePid": null
     }
   ],
   "isComplete": false,
-  "runnerPid": 2060312
+  "runnerPid": null
 }
