@@ -15,7 +15,7 @@ The CLI is implemented in `cli/src/` and is intended to be run from this `.ultra
   config.json          Workspace configuration
   prompts/             Prompt files used by study and sprint commands
   projects/            Project execution workspaces
-  studies/             Architecture study workspaces
+  studies/             Architecture study workspaces (hellosales-architecture, opencode-wrap-study, ai-agent-systems)
   system/              Contracts, templates, protocols, and reasoning guidance
 ```
 
@@ -143,6 +143,7 @@ Examples:
 ```bash
 ultra study list hellosales-architecture
 ultra study list opencode-wrap-study
+ultra study list ai-agent-systems
 ```
 
 This prints available sources and dimensions for the study.
@@ -171,6 +172,7 @@ Examples:
 ultra study run hellosales-architecture 01-project-structure cli
 ultra study run opencode-wrap-study 02-process-session-lifecycle t3code --model openai/gpt-5.5
 ultra study run hellosales-architecture 03 pocketbase --dry-run
+ultra study run ai-agent-systems 01-execution-semantics opencode
 ```
 
 `<dimension-ref>` can match:
@@ -200,6 +202,7 @@ Examples:
 ultra study run-all hellosales-architecture
 ultra study run-all hellosales-architecture --parallel 2 --timeout 1800000
 ultra study run-all opencode-wrap-study --dry-run
+ultra study run-all ai-agent-systems --parallel 4 --timeout 1800000
 ```
 
 This command:
@@ -223,6 +226,7 @@ Examples:
 ultra study run-loop hellosales-architecture
 ultra study run-loop hellosales-architecture --batch-size 3
 ultra study run-loop hellosales-architecture --batch-size 2 --model minimax-coding-plan/MiniMax-M2.7
+ultra study run-loop ai-agent-systems --batch-size 3
 ```
 
 `run-loop` is the most robust mode for large studies. It creates or resumes:
